@@ -1,0 +1,170 @@
+# LICENSE
+# -------
+#
+#   Copyright (C) 2018 Authlete, Inc.
+#
+#   Licensed under the Apache License, Version 2.0 (the "License");
+#   you may not use this file except in compliance with the License.
+#   You may obtain a copy of the License at
+#
+#       http://www.apache.org/licenses/LICENSE-2.0
+#
+#   Unless required by applicable law or agreed to in writing, software
+#   distributed under the License is distributed on an "AS IS" BASIS,
+#   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+#   See the License for the specific language governing permissions and
+#   limitations under the License.
+#
+#
+# OVERVIEW
+# --------
+#
+#   Command line completion for jose-generator command.
+#
+#
+# USAGE
+# -----
+#
+#   . jose-generator-completion
+#
+
+
+#--------------------------------------------------
+# Function for command line completion
+#--------------------------------------------------
+__jose_generator_completion()
+{
+    local curr="$2"
+    local prev="$3"
+
+    case "$prev" in
+        --signing-alg)
+            # Values for 'alg' in JWS header
+            local jws_alg_values=(
+                HS256 HS384 HS512
+                RS256 RS384 RS512
+                ES256 ES384 ES512
+                PS256 PS384 PS512
+                none
+            )
+
+            COMPREPLY=($(compgen -W "${jws_alg_values[*]}" -- "$curr"))
+            return 0
+            ;;
+
+        --encrypting-alg)
+            # Values for 'alg' in JWE header
+            local jwe_alg_values=(
+                RSA1_5 RSA-OAEP RSA-OAEP-256
+                A128KW A192KW A256KW
+                dir
+                ECDH-ES ECDH-ES+A128KW ECDH-ES+A192KW ECDH-ES+A256KW
+                A128GCMKW A192GCMKW A256GCMKW
+                PBES2-HS256+A128KW PBES2-H384+A192KW PBES2-HS512+A256KW
+            )
+
+            COMPREPLY=($(compgen -W "${jwe_alg_values[*]}" -- "$curr"))
+            return 0
+            ;;
+
+        --encrypting-enc)
+            # Values for 'enc' in JWE header
+            local jwe_enc_values=(
+                A128CBC-HS256 A192CBC-HS384 A256CBC-HS512
+                A128GCM A192GCM A256GCM
+            )
+
+            COMPREPLY=($(compgen -W "${jwe_enc_values[*]}" -- "$curr"))
+            return 0
+            ;;
+    esac
+
+    # If the current argument does not start with '-'.
+    if [ "${curr:0:1}" != "-" ]; then
+        return 0
+    fi
+
+    # Command line options
+    local command_line_options=(
+        # Operation
+        --sign -s
+        --encrypt -e
+        --encrypt-then-sign
+
+        # Payload
+        --payload -p
+        --payload-base64url
+        --payload-file
+        --payload-uri
+
+        # JWK
+        --jwk-signing-alg
+        --jwk-signing-alg-file
+        --jwk-signing-alg-uri
+
+        --jwk-encrypting-alg
+        --jwk-encrypting-alg-file
+        --jwk-encrypting-alg-uri
+
+        --jwk-encrypting-enc
+        --jwk-encrypting-enc-file
+        --jwk-encrypting-enc-uri
+
+        # JWK Set document
+        --jwks
+        --jwks-file
+        --jwks-uri
+
+        --jwks-signing
+        --jwks-signing-file
+        --jwks-signing-uri
+
+        --jwks-signing-alg
+        --jwks-signing-alg-file
+        --jwks-signing-alg-uri
+
+        --jwks-encrypting
+        --jwks-encrypting-file
+        --jwks-encrypting-uri
+
+        --jwks-encrypting-alg
+        --jwks-encrypting-alg-file
+        --jwks-encrypting-alg-uri
+
+        --jwks-encrypting-enc
+        --jwks-encrypting-enc-file
+        --jwks-encrypting-enc-uri
+
+        # JWS (JSON Web Signature)
+        --signing-alg
+        --signing-alg-kid
+        --signing-alg-key
+        --signing-alg-key-base64url
+        --signing-alg-key-file
+        --signing-alg-key-uri
+
+        --jws-header
+        --jws-header-base64url
+        --jws-header-file
+        --jws-header-uri
+
+        # JWE (JSON Web Encryption)
+        --encrypting-alg
+        --encrypting-alg-kid
+        --encrypting-enc
+        --encrypting-enc-kid
+
+        # Networking
+        --connect-timeout
+        --read-timeout
+
+        # Miscellaneous
+        --output-file -o
+        --verbose -v
+    )
+
+    COMPREPLY=($(compgen -W "${command_line_options[*]}" -- "$curr"))
+}
+
+
+complete -o default -F __jose_generator_completion jose-generator
