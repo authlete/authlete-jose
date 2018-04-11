@@ -58,6 +58,80 @@ option.
 Command Line Options
 --------------------
 
+```
+./bin/jose-generator
+  [--sign | -s]
+  [--encrypt | -e]
+  [--encrypt-then-sign]
+
+  [--payload {PAYLOAD} | -p {PAYLOAD}]
+  [--payload-base64url {BASE64URL}]
+  [--payload-file {FILE}]
+  [--payload-uri {URI}]
+
+  [--jwk-signing-alg {JWK}]
+  [--jwk-signing-alg-file {FILE}]
+  [--jwk-signing-alg-uri {URI}]
+
+  [--jwk-encrypting-alg {JWK}]
+  [--jwk-encrypting-alg-file {FILE}]
+  [--jwk-encrypting-alg-uri {URI}]
+
+  [--jwk-encrypting-enc {JWK}]
+  [--jwk-encrypting-enc-file {FILE}]
+  [--jwk-encrypting-enc-uri {URI}]
+
+  [--jwks {JWKSet}]
+  [--jwks-file {FILE}]
+  [--jwks-uri {URI}]
+
+  [--jwks-signing {JWKSet}]
+  [--jwks-signing-file {FILE}]
+  [--jwks-signing-uri {URI}]
+
+  [--jwks-signing-alg {JWKSet}]
+  [--jwks-signing-alg-file {FILE}]
+  [--jwks-signing-alg-uri {URI}]
+
+  [--jwks-encrypting {JWKSet}]
+  [--jwks-encrypting-file {FILE}]
+  [--jwks-encrypting-uri {URI}]
+
+  [--jwks-encrypting-alg {JWKSet}]
+  [--jwks-encrypting-alg-file {FILE}]
+  [--jwks-encrypting-alg-uri {URI}]
+
+  [--jwks-encrypting-enc {JWKSet}]
+  [--jwks-encrypting-enc-file {FILE}]
+  [--jwks-encrypting-enc-uri {URI}]
+
+  [--signing-alg {ALG}]
+  [--signing-alg-kid {KID}]
+
+  [--signing-alg-key {KEY}]
+  [--signing-alg-key-base64url {BASE64URL}]
+  [--signing-alg-key-file {FILE}]
+  [--signing-alg-key-uri {URI}]
+
+  [--jws-header {JWSHeader}]
+  [--jws-header-base64url {BASE64URL}]
+  [--jws-header-file {FILE}]
+  [--jws-header-uri {URI}]
+
+  [--encrypting-alg {ALG}]
+  [--encrypting-alg-kid {KID}]
+
+  [--encrypting-enc {ENC}]
+  [--encrypting-enc-kid {KID}]
+
+  [--connect-timeout {TIMEOUT}]
+  [--read-timeout {TIMEOUT}]
+
+  [--output-file {FILE} | -o {FILE}]
+
+  [--verbose | -v]
+```
+
 First, as mentioned in _Preparation_ section above, it is recommended to source
 `bin/jose-generator-completion` so that argument completion can work.
 
