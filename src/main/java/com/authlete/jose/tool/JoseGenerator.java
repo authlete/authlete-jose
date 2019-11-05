@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2018 Authlete, Inc.
+ * Copyright (C) 2018-2019 Authlete, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -28,6 +28,7 @@ import java.text.ParseException;
 import java.util.List;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
+import com.google.devtools.common.options.OptionsParsingException;
 import com.nimbusds.jose.Algorithm;
 import com.nimbusds.jose.JOSEException;
 import com.nimbusds.jose.JWSAlgorithm;
@@ -275,7 +276,8 @@ public class JoseGenerator
      * @return
      *         A generated JOSE string.
      */
-    public String execute(String[] args) throws IOException, ParseException, JOSEException
+    public String execute(String[] args)
+            throws IOException, ParseException, JOSEException, OptionsParsingException
     {
         // Parse the command line options.
         JoseGeneratorOptions options =
