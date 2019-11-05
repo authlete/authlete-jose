@@ -1,7 +1,7 @@
 # LICENSE
 # -------
 #
-#   Copyright (C) 2018 Authlete, Inc.
+#   Copyright (C) 2018-2019 Authlete, Inc.
 #
 #   Licensed under the Apache License, Version 2.0 (the "License");
 #   you may not use this file except in compliance with the License.
@@ -151,8 +151,22 @@ __jose_generator_completion()
         # JWE (JSON Web Encryption)
         --encrypting-alg
         --encrypting-alg-kid
+        --encrypting-alg-key
+        --encrypting-alg-key-base64url
+        --encrypting-alg-key-file
+        --encrypting-alg-key-uri
+
         --encrypting-enc
         --encrypting-enc-kid
+        --encrypting-enc-key
+        --encrypting-enc-key-base64url
+        --encrypting-enc-key-file
+        --encrypting-enc-key-uri
+
+        --jwe-header
+        --jwe-header-base64url
+        --jwe-header-file
+        --jwe-header-uri
 
         # Networking
         --connect-timeout

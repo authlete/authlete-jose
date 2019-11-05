@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2018 Authlete, Inc.
+ * Copyright (C) 2018-2019 Authlete, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -20,6 +20,8 @@ import java.io.File;
 import java.net.URI;
 import com.authlete.jose.tool.converter.Base64UrlConverter;
 import com.authlete.jose.tool.converter.FileConverter;
+import com.authlete.jose.tool.converter.JWEHeaderBase64UrlConverter;
+import com.authlete.jose.tool.converter.JWEHeaderConverter;
 import com.authlete.jose.tool.converter.JWKConverter;
 import com.authlete.jose.tool.converter.JWKSetConverter;
 import com.authlete.jose.tool.converter.JWSHeaderBase64UrlConverter;
@@ -32,6 +34,7 @@ import com.google.devtools.common.options.Option;
 import com.google.devtools.common.options.OptionsBase;
 import com.nimbusds.jose.EncryptionMethod;
 import com.nimbusds.jose.JWEAlgorithm;
+import com.nimbusds.jose.JWEHeader;
 import com.nimbusds.jose.JWSAlgorithm;
 import com.nimbusds.jose.JWSHeader;
 import com.nimbusds.jose.jwk.JWK;
@@ -522,6 +525,45 @@ public class JoseGeneratorOptions extends OptionsBase
 
 
     @Option(
+        name         = "encrypting-alg-key",
+        defaultValue = "null",
+        category     = "JWE (JSON Web Encryption)",
+        help         = "Key for a symmetric encryption algorithm ('alg' in JWE header)"
+    )
+    public String encryptingAlgKey;
+
+
+    @Option(
+        name         = "encrypting-alg-key-base64url",
+        defaultValue = "null",
+        category     = "JWE (JSON Web Encryption)",
+        help         = "Base64url representation of the key for a symmetric encryption algorithm ('alg' in JWE header)",
+        converter    = Base64UrlConverter.class
+    )
+    public byte[] encryptingAlgKeyBase64Url;
+
+
+    @Option(
+        name         = "encrypting-alg-key-file",
+        defaultValue = "null",
+        category     = "JWE (JSON Web Encryption)",
+        help         = "File containing the key for a symmetric encryption algorithm ('alg' in JWE header)",
+        converter    = FileConverter.class
+    )
+    public File encryptingAlgKeyFile;
+
+
+    @Option(
+        name         = "encrypting-alg-key-uri",
+        defaultValue = "null",
+        category     = "JWE (JSON Web Encryption)",
+        help         = "URI of the key for a symmetric encryption algorithm ('alg' in JWE header)",
+        converter    = URIConverter.class
+    )
+    public URI encryptingAlgKeyUri;
+
+
+    @Option(
         name         = "encrypting-enc",
         defaultValue = "null",
         category     = "JWE (JSON Web Encryption)",
@@ -540,6 +582,85 @@ public class JoseGeneratorOptions extends OptionsBase
         help         = "Key ID of the key for encrypting ('enc' in JWE header)"
     )
     public String encryptingEncKid;
+
+
+    @Option(
+        name         = "encrypting-enc-key",
+        defaultValue = "null",
+        category     = "JWE (JSON Web Encryption)",
+        help         = "Key for encrypting for a symmetric encryption method ('enc' in JWE header)"
+    )
+    public String encryptingEncKey;
+
+
+    @Option(
+        name         = "encrypting-enc-key-base64url",
+        defaultValue = "null",
+        category     = "JWE (JSON Web Encryption)",
+        help         = "Base64url representation of the key for encrypting for a symmetric encryption method ('enc' in JWE header)",
+        converter    = Base64UrlConverter.class
+    )
+    public byte[] encryptingEncKeyBase64Url;
+
+
+    @Option(
+        name         = "encrypting-enc-key-file",
+        defaultValue = "null",
+        category     = "JWE (JSON Web Encryption)",
+        help         = "File containing the key for encrypting for a symmetric encryption method ('enc' in JWE header)",
+        converter    = FileConverter.class
+    )
+    public File encryptingEncKeyFile;
+
+
+    @Option(
+        name         = "encrypting-enc-key-uri",
+        defaultValue = "null",
+        category     = "JWE (JSON Web Encryption)",
+        help         = "URI of the key for encrypting for a symmetric encryption method ('enc' in JWE header)",
+        converter    = URIConverter.class
+    )
+    public URI encryptingEncKeyUri;
+
+
+    @Option(
+        name         = "jwe-header",
+        defaultValue = "null",
+        category     = "JWE (JSON Web Encryption)",
+        help         = "JWE header",
+        converter    = JWEHeaderConverter.class
+    )
+    public JWEHeader jweHeader;
+
+
+    @Option(
+        name         = "jwe-header-base64url",
+        defaultValue = "null",
+        category     = "JWE (JSON Web Encryption)",
+        help         = "Base64url representation of the JWE header",
+        converter    = JWEHeaderBase64UrlConverter.class
+    )
+    public JWEHeader jweHeaderBase64Url;
+
+
+    @Option(
+        name         = "jwe-header-file",
+        defaultValue = "null",
+        category     = "JWE (JSON Web Encryption)",
+        help         = "File containing the JWE header",
+        converter    = FileConverter.class
+    )
+    public File jweHeaderFile;
+
+
+    @Option(
+        name         = "jwe-header-uri",
+        defaultValue = "null",
+        category     = "JWE (JSON Web Encryption)",
+        help         = "URI of the JWE header",
+        converter    = URIConverter.class
+    )
+    public URI jweHeaderUri;
 
 
     // Category: Networking

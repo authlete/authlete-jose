@@ -45,7 +45,7 @@ Basics
 | Signing algorithm | Use the `--signing-alg` option, or embed the `alg` parameter in the JWK. |
 | Encrypting | Use the `--encrypt` option to perform encrypting. |
 | Encrypting key | There are several ways to specify a key for encrypting. Details are described later. |
-| Encrypting algorithm | Use the `--encrypting-alg` option and `--encrypting-enc` option, or embed the `alg` parameter in the JWKs. |
+| Encrypting algorithm | Use the `--encrypting-alg` option and `--encrypting-enc` option, or embed the `alg` parameter and the `enc` parameter in the JWKs. |
 | Output | The output is written into the standard output unless the `--output-file` option is given. |
 
 If neither the `--sign` option nor the `--encrypt` option is given, an unsecured
@@ -121,8 +121,23 @@ Command Line Options
   [--encrypting-alg {ALG}]
   [--encrypting-alg-kid {KID}]
 
+  [--encrypting-alg-key {KEY}]
+  [--encrypting-alg-key-base64url {BASE64URL}]
+  [--encrypting-alg-key-file {FILE}]
+  [--encrypting-alg-key-uri {URI}]
+
   [--encrypting-enc {ENC}]
   [--encrypting-enc-kid {KID}]
+
+  [--encrypting-enc-key {KEY}]
+  [--encrypting-enc-key-base64url {BASE64URL}]
+  [--encrypting-enc-key-file {FILE}]
+  [--encrypting-enc-key-uri {URI}]
+
+  [--jwe-header {JWSHeader}]
+  [--jwe-header-base64url {BASE64URL}]
+  [--jwe-header-file {FILE}]
+  [--jwe-header-uri {URI}]
 
   [--connect-timeout {TIMEOUT}]
   [--read-timeout {TIMEOUT}]
@@ -189,9 +204,17 @@ $ . bin/jose-generator-completion
 | `--jws-header-file` _FILE_ | Specifies the file which contains a JWS header. |
 | `--jws-header-uri` _URI_ | Specifies the URI which points to a JWS header. |
 | `--encrypting-alg` _ALG_ | Specifies an algorithm for encrypting (for `alg` in JWE header). Supported values are `RSA1_5`, `RSA-OAEP`, `RSA-OAEP-256`, `A128KW`, `A192KW` `A256KW`, `dir`, `ECDH-ES`, `ECDH-ES+A128KW`, `ECDH-ES+A192KW`, `ECDH-ES+A256KW`, `A128GCMKW`, `A192GCMKW`, `A256GCMKW`, `PBES2-HS256+A128KW`, `PBES2-H384+A192KW` and `PBES2-HS512+A256KW`. |
-| `--encrypting-alg-kid` _KID_ | Specifies the key ID of a JWK which represents a key for encrypting (for `alg` in JWE header). If given, the key ID is used to find a proper JWK in a JWK Set document. |
+| `--encrypting-alg-kid` _KID_ | Specifies the key ID of a JWK which represents a key for encryption (for `alg` in JWE header). If given, the key ID is used to find a proper JWK in a JWK Set document. |
+| `--encrypting-alg-key` _KEY_ | Specifies a key for encryption. This option works only when the encryption algorithm is symmetric. |
+| `--encrypting-alg-key-base64url` _BASE64URL_ | Specifies the base64url representation of a key for encryption. This option works only when the encryption algorithm is symmetric. |
+| `--encrypting-alg-key-file` _FILE_ | Specifies the file which contains a key for encryption. This option works only when the encryption algorithm is symmetric. |
+| `--encrypting-alg-key-uri` _URI_ | Specifies the URI which points to a key for encryption. This option works only when the encryption algorithm is symmetric. |
 | `--encrypting-enc` _ENC_ | Specifies an algorithm for encrypting (for `enc` in JWE header). Supported values are `A128CBC-HS256`, `A192CBC-HS384`, `A256CBC-HS512`, `A128GCM`, `A192GCM` and `A256GCM`. |
 | `--encrypting-enc-kid` _KID_ | Specifies the key ID of a JWK which represents a key for encrypting (for `enc` in JWE header). If given, the key ID is used to find a proper JWK in a JWK Set document. |
+| `--encrypting-enc-key` _KEY_ | Specifies a key for encryption method (`enc` in JWE header). |
+| `--encrypting-enc-key-base64url` _BASE64URL_ | Specifies the base64url representation of a key for encryption method (`enc` in JWE header). |
+| `--encrypting-enc-key-file` _FILE_ | Specifies the file which contains a key for encryption method (`enc` in JWE header). |
+| `--encrypting-enc-key-uri` _URI_ | Specifies the URI which points to a key for encryption method (`enc` in JWE header). |
 | `--connect-timeout` _TIMEOUT_ | Connection timeout in milliseconds on fetching a JWK Set document. |
 | `--read-timeout` _TIMEOUT_ | Read timeout in milliseconds on fetching a JWK Set document. |
 | `--output-file` _FILE_ | The file to which the output is written into. |
