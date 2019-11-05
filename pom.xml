@@ -19,6 +19,15 @@
         </license>
     </licenses>
 
+    <developers>
+        <developer>
+            <name>Takahiko Kawasaki</name>
+            <email>taka@authlete.com</email>
+            <organization>Authlete, Inc.</organization>
+            <organizationUrl>https://www.authlete.com/</organizationUrl>
+        </developer>
+    </developers>
+
     <scm>
         <connection>scm:git:git@github.com:authlete/authlete-jose.git</connection>
         <developerConnection>scm:git:git@github.com:authlete/authlete-jose.git</developerConnection>
