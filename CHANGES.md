@@ -1,7 +1,15 @@
 CHANGES
 =======
 
-1.1 (2018-11-05)
+1.2 (2019-11-06)
+----------------
+
+- Added some options related to encryption.
+
+- Modified `JoseGeneratorOptionsParser.parse(String[])` not to call `System.exit`
+  on a parse error.
+
+1.1 (2019-11-05)
 ----------------
 
 - Updated nimbus-jose-jwt from 5.9 to 8.2 and bcprov-jdk15on from 1.59 to 1.64.
