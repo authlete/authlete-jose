@@ -205,7 +205,7 @@ public class JoseGeneratorOptions extends OptionsBase
         name         = "jwk-encrypting-enc-uri",
         defaultValue = "null",
         category     = "JWK",
-        help         = "URI of JWK for encrypting (for 'ecn' in JWS header)",
+        help         = "URI of JWK for encrypting (for 'enc' in JWS header)",
         converter    = URIConverter.class
     )
     public URI jwkEncryptingEncUri;
@@ -670,7 +670,7 @@ public class JoseGeneratorOptions extends OptionsBase
         name         = "connect-timeout",
         defaultValue = "0",
         category     = "Networking",
-        help         = "Connection timeout in milliseconds on fetching a JWK Set document."
+        help         = "Connection timeout in milliseconds on fetching data."
     )
     public int connectTimeout;
 
@@ -679,7 +679,7 @@ public class JoseGeneratorOptions extends OptionsBase
         name         = "read-timeout",
         defaultValue = "0",
         category     = "Networking",
-        help         = "Read timeout in milliseconds on fetching a JWK Set document."
+        help         = "Read timeout in milliseconds on fetching data."
     )
     public int readTimeout;
 
