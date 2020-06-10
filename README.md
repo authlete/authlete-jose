@@ -25,7 +25,7 @@ Maven
 <dependency>
     <groupId>com.authlete</groupId>
     <artifactId>authlete-jose</artifactId>
-    <version>1.2</version>
+    <version>1.3</version>
 </dependency>
 ```
 

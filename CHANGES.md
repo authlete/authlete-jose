@@ -1,6 +1,13 @@
 CHANGES
 =======
 
+1.3 (2020-06-11)
+----------------
+
+- Added `ES256K` and `EdDSA` support.
+
+- Added `BasicOptionsParser` and removed `JoseGeneratorOptionsParser`.
+
 1.2 (2019-11-06)
 ----------------
 

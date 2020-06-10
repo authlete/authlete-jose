@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2018 Authlete, Inc.
+ * Copyright (C) 2018-2020 Authlete, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -54,7 +54,6 @@ import static com.nimbusds.jose.jwk.KeyType.EC;
 import static com.nimbusds.jose.jwk.KeyType.OCT;
 import static com.nimbusds.jose.jwk.KeyType.OKP;
 import static com.nimbusds.jose.jwk.KeyType.RSA;
-
 import com.nimbusds.jose.EncryptionMethod;
 import com.nimbusds.jose.JWEAlgorithm;
 import com.nimbusds.jose.JWSAlgorithm;
