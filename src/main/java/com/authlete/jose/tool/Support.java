@@ -37,8 +37,10 @@ import static com.nimbusds.jose.JWEAlgorithm.RSA1_5;
 import static com.nimbusds.jose.JWEAlgorithm.RSA_OAEP;
 import static com.nimbusds.jose.JWEAlgorithm.RSA_OAEP_256;
 import static com.nimbusds.jose.JWSAlgorithm.ES256;
+import static com.nimbusds.jose.JWSAlgorithm.ES256K;
 import static com.nimbusds.jose.JWSAlgorithm.ES384;
 import static com.nimbusds.jose.JWSAlgorithm.ES512;
+import static com.nimbusds.jose.JWSAlgorithm.EdDSA;
 import static com.nimbusds.jose.JWSAlgorithm.HS256;
 import static com.nimbusds.jose.JWSAlgorithm.HS384;
 import static com.nimbusds.jose.JWSAlgorithm.HS512;
@@ -50,7 +52,9 @@ import static com.nimbusds.jose.JWSAlgorithm.RS384;
 import static com.nimbusds.jose.JWSAlgorithm.RS512;
 import static com.nimbusds.jose.jwk.KeyType.EC;
 import static com.nimbusds.jose.jwk.KeyType.OCT;
+import static com.nimbusds.jose.jwk.KeyType.OKP;
 import static com.nimbusds.jose.jwk.KeyType.RSA;
+
 import com.nimbusds.jose.EncryptionMethod;
 import com.nimbusds.jose.JWEAlgorithm;
 import com.nimbusds.jose.JWSAlgorithm;
@@ -70,6 +74,7 @@ public class Support
             RS256, RS384, RS512,
             ES256, ES384, ES512,
             PS256, PS384, PS512,
+            ES256K, EdDSA
     };
 
 
@@ -93,7 +98,7 @@ public class Support
 
     // Supported 'kty' values in JWK.
     private static final KeyType[] SUPPORTED_JWK_KTY_VALUES = new KeyType[] {
-            EC, OCT, RSA
+            EC, OCT, RSA, OKP
     };
 
 

@@ -17,6 +17,7 @@ package com.authlete.jose.tool;
 
 
 import static com.nimbusds.jose.util.StandardCharset.UTF_8;
+
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
@@ -26,8 +27,10 @@ import java.security.Provider;
 import java.security.Security;
 import java.text.ParseException;
 import java.util.List;
+
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
+
 import com.google.devtools.common.options.OptionsParsingException;
 import com.nimbusds.jose.Algorithm;
 import com.nimbusds.jose.JOSEException;
@@ -37,17 +40,16 @@ import com.nimbusds.jose.JWSObject;
 import com.nimbusds.jose.JWSSigner;
 import com.nimbusds.jose.Payload;
 import com.nimbusds.jose.crypto.ECDSASigner;
+import com.nimbusds.jose.crypto.Ed25519Signer;
 import com.nimbusds.jose.crypto.MACSigner;
 import com.nimbusds.jose.crypto.RSASSASigner;
 import com.nimbusds.jose.crypto.bc.BouncyCastleProviderSingleton;
-import com.nimbusds.jose.jwk.ECKey;
+import com.nimbusds.jose.jwk.Curve;
 import com.nimbusds.jose.jwk.JWK;
 import com.nimbusds.jose.jwk.JWKMatcher;
 import com.nimbusds.jose.jwk.JWKSelector;
 import com.nimbusds.jose.jwk.JWKSet;
 import com.nimbusds.jose.jwk.KeyType;
-import com.nimbusds.jose.jwk.OctetSequenceKey;
-import com.nimbusds.jose.jwk.RSAKey;
 import com.nimbusds.jose.util.Base64URL;
 
 
@@ -1096,17 +1098,25 @@ public class JoseGenerator
 
         if (kty == KeyType.EC)
         {
-            return new ECDSASigner((ECKey)jwk);
+            return new ECDSASigner(jwk.toECKey());
         }
 
         if (kty == KeyType.OCT)
         {
-            return new MACSigner((OctetSequenceKey)jwk);
+            return new MACSigner(jwk.toOctetSequenceKey());
         }
 
         if (kty == KeyType.RSA)
         {
-            return new RSASSASigner((RSAKey)jwk);
+            return new RSASSASigner(jwk.toRSAKey());
+        }
+
+        if (kty == KeyType.OKP) {
+        	if (jwk.toOctetKeyPair().getCurve().equals(Curve.Ed25519)) {
+        		return new Ed25519Signer(jwk.toOctetKeyPair());
+        	} else {
+        		throw fatal(null, "Cannot create a signer for the key type (%s) with curve (%s).", kty, jwk.toOctetKeyPair().getCurve());
+        	}
         }
 
         throw fatal(null, "Cannot create a signer for the key type (%s).", kty);
