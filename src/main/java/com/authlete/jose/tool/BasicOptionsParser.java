@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2018-2019 Authlete, Inc.
+ * Copyright (C) 2020 Authlete, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,26 +16,23 @@
 package com.authlete.jose.tool;
 
 
+import com.google.devtools.common.options.OptionsBase;
 import com.google.devtools.common.options.OptionsParser;
 import com.google.devtools.common.options.OptionsParsingException;
 
 
-class JoseGeneratorOptionsParser
+class BasicOptionsParser
 {
-    public JoseGeneratorOptions parse(String[] args) throws OptionsParsingException
+    public <TOptions extends OptionsBase> TOptions
+    parse(String[] args, Class<TOptions> optionsClass) throws OptionsParsingException
     {
         // Create a new parser.
-        OptionsParser parser =
-                OptionsParser.newOptionsParser(JoseGeneratorOptions.class);
+        OptionsParser parser = OptionsParser.newOptionsParser(optionsClass);
 
         // Parse the arguments.
         parser.parse(args);
 
         // Get the result of parsing the arguments.
-        JoseGeneratorOptions options =
-                parser.getOptions(JoseGeneratorOptions.class);
-
-        // Return the validated options.
-        return options;
+        return parser.getOptions(optionsClass);
     }
 }

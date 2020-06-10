@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2018-2019 Authlete, Inc.
+ * Copyright (C) 2018-2020 Authlete, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,7 +17,6 @@ package com.authlete.jose.tool;
 
 
 import static com.nimbusds.jose.util.StandardCharset.UTF_8;
-
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
@@ -27,10 +26,8 @@ import java.security.Provider;
 import java.security.Security;
 import java.text.ParseException;
 import java.util.List;
-
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
-
 import com.google.devtools.common.options.OptionsParsingException;
 import com.nimbusds.jose.Algorithm;
 import com.nimbusds.jose.JOSEException;
@@ -283,7 +280,7 @@ public class JoseGenerator
     {
         // Parse the command line options.
         JoseGeneratorOptions options =
-                new JoseGeneratorOptionsParser().parse(args);
+                new BasicOptionsParser().parse(args, JoseGeneratorOptions.class);
 
         // Prepare the payload.
         verbose(options, "Reading the payload.");
